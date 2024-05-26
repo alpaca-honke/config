@@ -6,8 +6,10 @@ When you use on Windows, some copies of configuration files are made at appropri
 
 ## How to use
 1.  Clone this repo
-   `git clone https://github.com/alpaca-honke/conf`
+   `git clone https://github.com/alpaca-honke/config`
 1. Run install.sh
    `cd conf; ./install.sh`
 1. Answer the question by install.sh
    Answer `u` when you are running it on WSL2 for 1st question.
+
+Note: if you want to load settings on your machine (especially on Windows), run `import.sh`.
