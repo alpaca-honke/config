@@ -1,0 +1,25 @@
+﻿[AFXW]
+CFG=ON
+
+[REG_DIR]
+PRT_00="Downloads"
+DIR_00=C:\Users\black\Downloads\
+PRT_01="Documents"
+DIR_01=C:\Users\black\OneDrive\ドキュメント\
+PRT_02="Pictures"
+DIR_02=C:\Users\black\OneDrive\画像\
+PRT_03="black (~)"
+DIR_03=C:\Users\black\
+PRT_04="SIT_docs"
+DIR_04=C:\Users\black\OneDrive\ドキュメント\document-kosuke\SIT_docs\
+PRT_05="Onedrive"
+DIR_05=C:\Users\black\OneDrive\
+PRT_06="Google-blacktea"
+DIR_06=G:\マイドライブ\
+PRT_07="Google-redtea"
+DIR_07=H:\マイドライブ\
+PRT_08="Google-darjeeling"
+DIR_08=I:\マイドライブ\
+PRT_09="Google-bp24111"
+DIR_09=J:\
+

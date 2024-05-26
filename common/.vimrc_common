@@ -1,0 +1,104 @@
+" encoding
+set enc=utf8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
+" line-number
+set nu
+" backup-off
+set nowritebackup
+set nobackup
+" when virtual-block, can go on blank space
+set virtualedit=block
+" use backspace in insert
+set backspace=indent,eol,start
+" zenkaku-kigou
+set ambiwidth=double
+" powerline-font-widths
+call setcellwidths([
+    \ [ 0xe0a0, 0xe0a3, 1],
+    \ [ 0xe0b0, 0xe0b7, 1],
+    \ [ 0xe0b8, 0xe0c8, 2],
+    \ [ 0xe0ca, 0xe0ca, 2],
+    \ [ 0xe0cc, 0xe0d1, 2],
+    \ [ 0xe0d2, 0xe0d2, 1],
+    \ [ 0xe0d4, 0xe0d4, 1],
+    \ ])
+
+" dont depend CAPITAL or little
+"set ignorecase
+"set smartcase
+
+" if search went to last of the file, go back to head
+set wrapscan
+" edge-wrap
+set nowrap
+" search-highlight
+set hlsearch
+" realtime search
+set  incsearch
+
+" show '(' to ')'
+set showmatch matchtime=1
+" keep message-line 2 line (can keep message-line & status:insert,virtual,e.t.c. line)
+set cmdheight=1
+set laststatus=2
+" show command that hasnt been exed
+set showcmd
+" comment-color to blue
+hi Comment ctermfg=3
+" autoindent
+set autoindent
+set smartindent
+" replace tab to space when inserting
+set expandtab
+" indent-width by vim-typing
+set shiftwidth=4
+" cursor move width
+set softtabstop=4
+" display tab-width
+set tabstop=4
+" indent visibility
+set list listchars=tab:\|\ ,space:･,trail:･,extends:»,precedes:«,eol:↲
+hi NonText    ctermfg=8
+hi SpecialKey ctermfg=8
+" highlight cursor line
+set cursorline
+hi clear CursorLine
+hi CursorLine ctermbg=17
+" show title
+set title
+"set notitle
+
+let mapleader = "\<Space>"
+" set jj to ESC
+inoremap <silent> jj <ESC>
+" + to Crl+A (number increment)
+nnoremap + <C-a>
+" - to Ctrl+x (decrement)
+nnoremap - <C-x>
+" バッファとタブの挙動が違うことに違和感を覚えるので統一化（後で変えるかも）
+" tab
+nnoremap <leader>te :<C-u>tabedit 
+nnoremap <leader>tc :<C-u>tabclose<CR>
+" buffer
+nnoremap <silent> gb :<C-u>if v:count!='0' \| execute 'b '.v:count \| else \| bnext \| endif<CR>
+nnoremap <silent> gB :<C-u>bprev<CR>
+nnoremap <leader>be :<C-u>e 
+nnoremap <leader>bc :<C-u>bd<CR>
+" split
+nnoremap <leader>v :<C-u>vs
+nnoremap <leader>h :<C-u>hs
+nnoremap gw <C-w>
+
+" syntax highlight
+syntax on
+" html/xml-tag auto
+augroup MyXML
+    autocmd!
+    autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+    autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
+
+" [WINDOWS]use slash instead of backslash
+"set shellslash
