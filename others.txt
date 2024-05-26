@@ -1,0 +1,24 @@
+AFXW(Binary)
+AutohotKey
+clibor
+noMeiryoUI
+Everything
+Quick Share by Google
+PowerToys
+GlobalProtect
+PrinterDrivers(Brother/Kyocera)
+Google Drive
+7-zip
+Firefox
+Git
+GitHub Desktop
+IOBit Uninstaller
+LINE
+NeoVim
+Node.js
+
+aviutl
+CWFreak
+NEWTRINO
+Minecraft
+Traction Waveform
