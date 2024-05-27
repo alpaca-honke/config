@@ -1,5 +1,21 @@
-AFXW(Binary)
+--Linux machine requirements--
+zsh
+Node.js
+NeoVim
+(if not installed)git
+
+--Linux machine options--
+pwsh
+fish
+gh
+
+--Windows machine requirements--
+AFXW
 AutohotKey
+Node.js
+NeoVim
+
+--Windows machine options--
 clibor
 noMeiryoUI
 Everything
@@ -14,9 +30,8 @@ Git
 GitHub Desktop
 IOBit Uninstaller
 LINE
-NeoVim
-Node.js
 
+--Windows machine additionals--
 aviutl
 CWFreak
 NEWTRINO
