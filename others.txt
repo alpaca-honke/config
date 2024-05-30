@@ -16,6 +16,7 @@ Node.js
 NeoVim
 
 --Windows machine options--
+MacType
 clibor
 noMeiryoUI
 Everything
@@ -30,6 +31,7 @@ Git
 GitHub Desktop
 IOBit Uninstaller
 LINE
+Hiragino Gothic
 
 --Windows machine additionals--
 aviutl
