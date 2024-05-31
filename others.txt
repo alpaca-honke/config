@@ -34,6 +34,7 @@ GitHub Desktop (GitHub.GitHubDesktop)
 *Hiragino Gothic
 Sumatra PDF (SumatraPDF.SumatraPDF)
 gsudo (gerardog.gsudo)
+*ExplorerPatcher
 
 --Windows machine additionals--
 *aviutl
