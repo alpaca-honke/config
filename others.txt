@@ -10,32 +10,34 @@ fish
 gh
 
 --Windows machine requirements--
-AFXW
-AutohotKey
-Node.js
-NeoVim
+*AFXW
+AutohotKey (Autohotkey.Autohotkey)
+Node.js (CoreyButler.NVMforWindows)
+NeoVim (Neovim.Neovim)
 
 --Windows machine options--
-MacType
-clibor
-noMeiryoUI
-Everything
-Quick Share by Google
-PowerToys
-GlobalProtect
-PrinterDrivers(Brother/Kyocera)
-Google Drive
-7-zip
-Firefox
-Git
-GitHub Desktop
-IOBit Uninstaller
-LINE
-Hiragino Gothic
+MacType (Mactype.Mactype)
+*clibor
+*noMeiryoUI
+Everything (voidtools.Everything)
+Quick Share by Google (Google.QuickShare)
+PowerToys (Microsoft.PowerToys)
+*GlobalProtect
+*PrinterDrivers(Brother/Kyocera)
+Google Drive (Google.GoogleDrive)
+7-zip (7-zip.7-zip)
+Firefox (Mozilla.Firefox)
+Git (Git.Git)
+GitHub Desktop (GitHub.GitHubDesktop)
+*IOBit Uninstaller
+*LINE
+*Hiragino Gothic
+Sumatra PDF (SumatraPDF.SumatraPDF)
+gsudo (gerardog.gsudo)
 
 --Windows machine additionals--
-aviutl
-CWFreak
-NEWTRINO
-Minecraft
-Traction Waveform
+*aviutl
+*CWFreak
+*NEWTRINO
+*Minecraft
+*Traction Waveform
