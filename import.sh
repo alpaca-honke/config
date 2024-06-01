@@ -94,4 +94,14 @@ case $ANS in
         echo - ~/bin/Autohotkey_vim/
         cp -rf ~/bin/Autohotkey_vim/ $CONFDIR/windows/Autohotkey_vim/
 esac
+echo -n "~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json"
+read ANS
+case $ANS in
+    [Nn]* )
+        echo "no"
+        ;;
+    * )
+        echo - ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
+        cp -rf ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json $CONFDIR/windows/WindowsTerminal/settings.json
+esac
 echo Completed.

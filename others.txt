@@ -31,6 +31,7 @@ Git (Git.Git)
 GitHub Desktop (GitHub.GitHubDesktop)
 *IOBit Uninstaller
 *LINE
+*HackGen
 *Hiragino Gothic
 Sumatra PDF (SumatraPDF.SumatraPDF)
 gsudo (gerardog.gsudo)
