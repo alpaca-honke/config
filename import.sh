@@ -102,6 +102,6 @@ case $ANS in
         ;;
     * )
         echo - ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
-        cp -rf ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json $CONFDIR/windows/WindowsTerminal
+        cp -rf ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json $CONFDIR/windows/WindowsTerminal/
 esac
 echo Completed.
