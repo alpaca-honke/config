@@ -224,7 +224,7 @@ case $MACHINE in
                 echo - ~/bin/Autohotkey_vim/
                 cp -rf $CONFDIR/windows/Autohotkey_vim/ ~/bin/Autohotkey_vim/
         esac
-        echo -n "~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json"
+        echo -n "~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json [Y/n]:"
         read ANS
         case $ANS in
             [Nn]* )
