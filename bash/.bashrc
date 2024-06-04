@@ -108,7 +108,16 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:~/.bin 
-export EDITOR="vim"
+
+if command -v nvim 
+then
+    export PATH=nvim
+elif command -v vim
+then
+    export PATH=vim
+else
+    export PAHT=vi
+fi
 
 # load local settings
 if [ -f ~/.bashrc_local ] ;then
