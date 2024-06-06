@@ -19,6 +19,7 @@
 |r |  | Ctrl + y (進む) | 定義無し | 定義無し |
 |q |  | Alt + F4 (ウィンドウ閉じる)  | 定義無し | 定義無し |
 |t |  | Win + Tab (タスクビュー) | 定義無し | 定義無し |
-|CapsLock | Enter | Backspace | 定義無し | 定義無し |
+|CapsLock | Enter | | 定義無し | 定義無し |
+|Tab|  | BackSpace|
 
 //CapsLock + j => Esc

@@ -2,6 +2,21 @@
 
 *Space::Send,{Blind}{Space}
 
+;CapsLockをEnterに
+vkF0::Send,{Enter}
+
+;シフト残り対策
+Space & vkf0::
+	Send,{Space}	;変換
+	Send,{Enter}	;確定
+	return
+
+;Space + ShiftでBackspace
+Space & Tab::Send,{Backspace}
+
+;半角+JでEscに
+;vkF4 & j::Send,{Esc}
+
 ;上下左右
 Space & h::Send,{Blind}{Left}
 Space & j::Send,{Blind}{Down}
@@ -37,9 +52,9 @@ Space & o::
 Space & x::
 	GetKeyState,state,Shift
 	if state=U
-		Send,{BS}
-	else
 		Send,{Delete}
+	else
+		Send,{BS}
 	return
 
 ;Space & d::Send,^x
