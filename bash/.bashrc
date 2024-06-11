@@ -111,12 +111,12 @@ export PATH=$PATH:~/.bin
 
 if command -v nvim 
 then
-    export PATH=nvim
+    export EDITOR=nvim
 elif command -v vim
 then
-    export PATH=vim
+    export EDITOR=vim
 else
-    export PAHT=vi
+    export EDITOR=vi
 fi
 
 # load local settings
