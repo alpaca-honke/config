@@ -14,8 +14,8 @@ Space & vkf0::
 ;Space + ShiftでBackspace
 Space & Tab::Send,{Backspace}
 
-;Alt + [ でESC
-Alt & [::Send,{ESC}
+;ESC
+Space & [::Send,{Blind}{ESC}
 
 ;上下左右
 Space & h::Send,{Blind}{Left}
