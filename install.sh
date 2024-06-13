@@ -212,7 +212,11 @@ case $MACHINE in
                 ;;
             * )
                 echo - ~/bin/afxw*/
-                cp -rf $CONFDIR/windows/afxw64_166/ ~/bin/afxw64_166/
+                cp -f $CONFDIR/windows/afxw64_166/AFXW.DEF ~/bin/afxw64_166/AFXW.DEF
+                cp -f $CONFDIR/windows/afxw64_166/AFXW.HIS ~/bin/afxw64_166/AFXW.HIS
+                cp -f $CONFDIR/windows/afxw64_166/AFXW.INI ~/bin/afxw64_166/AFXW.INI
+                cp -f $CONFDIR/windows/afxw64_166/AFXW.KEY ~/bin/afxw64_166/AFXW.KEY
+                cp -f $CONFDIR/windows/afxw64_166/K3KEYAFX.DEF ~/bin/afxw64_166/K3KEYAFX.DEF
         esac
         echo -n "~/bin/Autohotkey_vim/ [Y/n]:"
         read ANS
@@ -222,7 +226,8 @@ case $MACHINE in
                 ;;
             * )
                 echo - ~/bin/Autohotkey_vim/
-                cp -rf $CONFDIR/windows/Autohotkey_vim/ ~/bin/Autohotkey_vim/
+                cp -f $CONFDIR/windows/Autohotkey_vim/vilike.ahk ~/bin/Autohotkey_vim/vilike.ahk
+                cp -f $CONFDIR/windows/Autohotkey_vim/vilike.md ~/bin/Autohotkey_vim/vilike.md
         esac
         echo -n "~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json [Y/n]:"
         read ANS
@@ -232,7 +237,7 @@ case $MACHINE in
                 ;;
             * )
                 echo - ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
-                cp -rf $CONFDIR/windows/WindowsTerminal/settings.json ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
+                cp -f $CONFDIR/windows/WindowsTerminal/settings.json ~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json
         esac
         echo Completed.
         ;;
