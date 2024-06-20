@@ -218,7 +218,7 @@ case $MACHINE in
                 cp -f $CONFDIR/windows/afxw64_166/AFXW.KEY ~/bin/afxw64_166/AFXW.KEY
                 cp -f $CONFDIR/windows/afxw64_166/K3KEYAFX.DEF ~/bin/afxw64_166/K3KEYAFX.DEF
         esac
-        echo -n "~/bin/Autohotkey_vim/ [Y/n]:"
+        echo -n "~/bin/Autohotkey/ [Y/n]:"
         read ANS
         case $ANS in
             [Nn]* )
@@ -226,8 +226,9 @@ case $MACHINE in
                 ;;
             * )
                 echo - ~/bin/Autohotkey_vim/
-                cp -f $CONFDIR/windows/Autohotkey_vim/vilike.ahk ~/bin/Autohotkey_vim/vilike.ahk
-                cp -f $CONFDIR/windows/Autohotkey_vim/vilike.md ~/bin/Autohotkey_vim/vilike.md
+                cp -f $CONFDIR/windows/Autohotkey/vilike.ahk ~/bin/Autohotkey/vilike.ahk
+                cp -f $CONFDIR/windows/Autohotkey/vilike.md ~/bin/Autohotkey/vilike.md
+                cp -f $CONFDIR/windows/Autohotkey/touchpad.ahk ~/bin/Autohotkey/touchpad.ahk
         esac
         echo -n "~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json [Y/n]:"
         read ANS

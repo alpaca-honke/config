@@ -84,15 +84,15 @@ case $ANS in
         echo - ~/bin/afxw*/
         cp -rf ~/bin/afxw64_166/AFXW.DEF  ~/bin/afxw64_166/AFXW.INI  ~/bin/afxw64_166/AFXW.KEY  ~/bin/afxw64_166/K3KEYAFX.DEF $CONFDIR/windows/afxw64_166/
 esac
-echo -n "~/bin/Autohotkey_vim/ [Y/n]:"
+echo -n "~/bin/Autohotkey/ [Y/n]:"
 read ANS
 case $ANS in
     [Nn]* )
         echo "no"
         ;;
     * )
-        echo - ~/bin/Autohotkey_vim/
-        cp -rf ~/bin/Autohotkey_vim/ $CONFDIR/windows/
+        echo - ~/bin/Autohotkey/
+        cp -rf ~/bin/Autohotkey/ $CONFDIR/windows/
 esac
 echo -n "~/AppData/Local/Packages/Microsoft.WindowsTerminal_*/LocalState/settings.json [Y/n]:"
 read ANS

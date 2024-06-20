@@ -89,7 +89,8 @@ Space & r::Send,^y
 ;保存する
 Space & w::Send,^s
 ;ウィンドウを閉じる
-Space & q::Send,!{F4}
+;Space & q::Send,!{F4}  これタイプミスで画面閉じちゃうから割り当て変える
+^q::Send,!{F4}
 ;タスクビュー
 Space & t::Send,#{Tab}
 
