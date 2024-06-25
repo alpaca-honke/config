@@ -105,6 +105,16 @@ case $MACHINE in
                 ln -sf $CONFDIR/tex/.latexmkrc ~/.latexmkrc
                 ;;
         esac
+        echo -n "LaTeX custom packages [Y/n]:"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo "!!!LaTeX custom packages installing script has not written for linux!!!"
+                ;;
+        esac
 
         echo Completed.
         ;;
@@ -203,6 +213,22 @@ case $MACHINE in
                 echo - ~/.latexmkrc
                 cp -f $CONFDIR/tex/.latexmkrc ~/.latexmkrc
                 ;;
+        esac
+        echo -n "LaTeX custom packages [Y/n]:"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo -n "Your TeX Live version? :"
+                read VERSION
+                echo - mylt.sty
+                mkdir -p /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mylt
+                cp -f $CONFDIR/tex/mylt.sty /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mylt/mylt.sty
+                echo - mybeamer.sty
+                mkdir -p /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mybeamer/mybeamer.sty
+                cp -f $CONFDIR/tex/mybeamer.sty /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mybeamer/mybeamer.sty
         esac
         echo -n "~/bin/afxw*/ [Y/n]:"
         read ANS

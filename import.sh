@@ -74,6 +74,20 @@ case $ANS in
         cp -f ~/.latexmkrc $CONFDIR/tex/.latexmkrc
         ;;
 esac
+echo -n "LaTeX custom packages [Y/n]:"
+read ANS
+case $ANS in
+    [Nn]* )
+        echo "no"
+        ;;
+    * )
+        echo -n "Your TeX Live version? :"
+        read VERSION
+        echo - mylt.sty
+        sudo cp -f /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mylt/mylt.sty $CONFDIR/tex/mylt.sty
+        echo - mybeamer.sty
+        sudo cp -f /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mybeamer/mybeamer.sty $CONFDIR/tex/mybeamer.sty
+esac
 echo -n "~/bin/afxw*/ [Y/n]:"
 read ANS
 case $ANS in
