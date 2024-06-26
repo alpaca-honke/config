@@ -94,6 +94,18 @@ case $MACHINE in
                 ln -sf $CONFDIR/nvim/coc-settings.json ${XDG_CONFIG_HOME:-~/.config}/nvim/coc-settings.json
                 ;;
         esac
+	echo -n "~/.config/skkdic [Y/n]:"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo - ${XDG_CONFIG_HOME:-~/.config}/skkdic
+                mkdir -p ${XDG_CONFIG_HOME:-~/.config}/skkdic
+                ln -sf $CONFDIR/skk/SKK-JISYO.L ${XDG_CONFIG_HOME:-~/.config}/skkdic/SKK-JISYO.L
+                ;;
+        esac
         echo -n "~/.latexmkrc [Y/n]:"
         read ANS
         case $ANS in
@@ -201,6 +213,18 @@ case $MACHINE in
                 cp -f $CONFDIR/common/.vimrc_common ~/.vimrc_common
                 echo - ~/.config/nvim/coc-settings.json
                 cp -f $CONFDIR/nvim/coc-settings.json ~/AppData/Local/nvim/coc-settings.json
+                ;;
+        esac
+	echo -n "~/.config/skkdic [Y/n]:"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo - ~/.config/skkdic
+                mkdir -p ~/.config/skkdic
+                cp -f $CONFDIR/skk/SKK-JISYO.L ~/.config/skkdic/SKK-JISYO.L
                 ;;
         esac
         echo -n "~/.latexmkrc [Y/n]:"

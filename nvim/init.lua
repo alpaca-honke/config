@@ -24,7 +24,9 @@ require("lazy").setup({
     {"sheerun/vim-polyglot"},
     --theme
     {"vim-airline/vim-airline"},
-    {"vim-airline/vim-airline-themes"}
+    {"vim-airline/vim-airline-themes"},
+    --IM
+    {"vim-skk/skk.vim"}
 })
 
 --load common vimrc with vim
@@ -99,6 +101,11 @@ vim.api.nvim_create_autocmd({"TermOpen"},{
 --coc-explorer
 vim.keymap.set("n","<Space>n","<Cmd>CocCommand explorer --toggle --width 30<CR>")
 
+--skk
+vim.api.nvim_exec("set imdisable",false)
+
+vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
+
 --以下必要かはわからない
 --vim.api.nvim_set_hl()
 vim.api.nvim_exec("hi SignColumn ctermfg=NONE ctermbg=NONE",false)
@@ -141,7 +148,8 @@ vim.api.nvim_exec("hi CocInlayHint ctermfg=7 ctermbg=242",false)
     keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
     -- Use <c-j> to trigger snippets
-    keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+    -- skkと被るため無効化。使わんし。
+    --keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
     -- Use <c-space> to trigger completion
     keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
 
