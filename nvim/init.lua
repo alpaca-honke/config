@@ -105,6 +105,7 @@ vim.keymap.set("n","<Space>n","<Cmd>CocCommand explorer --toggle --width 30<CR>"
 vim.api.nvim_exec("set imdisable",false)
 
 vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
+vim.api.nvim_set_var("skk_auto_save_jisyo",1)
 
 --以下必要かはわからない
 --vim.api.nvim_set_hl()
