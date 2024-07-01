@@ -35,7 +35,20 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
         Send "{Blind}{ESC}"
     }
 
-    :*:jj::Send "{ESC}"
+;    isFirstJ := false
+;    j::
+;    {
+;        if (isFirstJ = false)
+;        {
+;            Send "j"
+;            isFirstJ := true
+;            SetTimer, isFirstJ := false, -100
+;        }
+;        else if (isFirstJ = true)
+;        {
+;            Send "{ESC}"
+;        }
+;    }
 
     ;上下左右
     Space & h::Send "{Blind}{Left}"
