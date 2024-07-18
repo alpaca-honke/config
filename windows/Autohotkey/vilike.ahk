@@ -10,17 +10,41 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
         Send "{Blind}{Space}"
     }
 
-    ;CapsLockをEnterに
-    vkF0::
-    {
-        Send "{Enter}"
+    ;ctrl to enter
+    ctrlState := "none"
+    ctrlih := InputHook()
+    ctrlih.KeyOpt("{All}","N")
+    ctrlih.OnKeyDown := ctrlCallBack
+
+    ctrlCallBack(ih, vk, sc) {
+        global ctrlState
+        ctrlState := "ctrl"
     }
 
-    ;シフト残り対策
-    Space & vkf0::
+    Ctrl::{
+        global ctrlState
+        ;global ctrlih
+
+        Send "{Ctrl down}"
+        ctrlState := "listen"
+        ctrlih.Start()
+        return
+    }
+
+    Ctrl up:: 
     {
-        Send "{Space}"	;変換
-        Send "{Enter}"	;確定
+        global ctrlState
+        ;global ctrlih
+
+        ctrlih.Stop()
+        if (ctrlState = "ctrl" ) {
+            Send "{Ctrl up}"
+        } else {
+            Send "{Ctrl up}"
+            Send "{Enter}"
+        }
+        ctrlState := "none"
+        return
     }
 
     ;Space + ShiftでBackspace
@@ -34,21 +58,6 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
     {
         Send "{Blind}{ESC}"
     }
-
-;    isFirstJ := false
-;    j::
-;    {
-;        if (isFirstJ = false)
-;        {
-;            Send "j"
-;            isFirstJ := true
-;            SetTimer, isFirstJ := false, -100
-;        }
-;        else if (isFirstJ = true)
-;        {
-;            Send "{ESC}"
-;        }
-;    }
 
     ;上下左右
     Space & h::Send "{Blind}{Left}"
@@ -158,7 +167,6 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
     Space & z::Send "!{vkf3}"
 
 
-#HotIf
 
     ;Excel
 #Hotif WinActive("ahk_class XLMAIN")
@@ -167,7 +175,7 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
     Space & i::
     {
         Send "{F2}"
-        Send "^{Home}"
+        ;Send "^{Home}"
     }
     Space & c::
     {
@@ -177,7 +185,6 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
     }
     Space & (::Send "^{PgUp}"
     Space & )::Send "^{PgDn}"
-#Hotif
 
 
 #Hotif WinActive("セルの書式設定")
@@ -209,5 +216,4 @@ GroupAdd "Game", "ahk_class VALORANTUnrealWindow"
     ;Space & x::Send,!x
     ;Space & y::Send,!y
     ;Space & z::Send,!z
-#Hotif
 
