@@ -56,27 +56,27 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-#if [ "$color_prompt" = yes ]; then
-#   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#   source ~/.git-prompt.sh
-#   GIT_PS1_SHOWDIRTYSTATE="yes"
-#   GIT_PS1_SHOWSTASHSTATE="yes"
-#   GIT_PS1_SHOWUNTRACKEDFILES="yes"
-#   GIT_PS1_SHOWUPSTREAM="yes"
-#   PS1="${debian_chroot:+($debian_chroot)}\[\e[01;94m\]bash \[\e[01;33m\]\u\[\e[01;32m\]@\h$(__git_ps1  \(%s\))\n\[\e[01;96m\]\w \[\e[01;33m\]\$ \[\e[00m\]"
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-#
-## If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#    ;;
-#*)
-#    ;;
-#esac
+if [ "$color_prompt" = yes ]; then
+   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+   source ~/.git-prompt.sh
+   GIT_PS1_SHOWDIRTYSTATE="yes"
+   GIT_PS1_SHOWSTASHSTATE="yes"
+   GIT_PS1_SHOWUNTRACKEDFILES="yes"
+   GIT_PS1_SHOWUPSTREAM="yes"
+   PS1="${debian_chroot:+($debian_chroot)}\[\e[01;94m\]bash \[\e[01;33m\]\u\[\e[01;32m\]@\h$(__git_ps1  \(%s\))\n\[\e[01;96m\]\w \[\e[01;33m\]\$ \[\e[00m\]"
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -109,10 +109,10 @@ fi
 
 export PATH=$PATH:~/.bin 
 
-if command -v nvim 
+if command -v nvim > /dev/null
 then
     export EDITOR=nvim
-elif command -v vim
+elif command -v vim > /dev/null
 then
     export EDITOR=vim
 else
