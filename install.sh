@@ -251,7 +251,7 @@ case $MACHINE in
                 mkdir -p /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mylt
                 cp -f $CONFDIR/tex/mylt.sty /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mylt/mylt.sty
                 echo - mybeamer.sty
-                mkdir -p /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mybeamer/mybeamer.sty
+                mkdir -p /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mybeamer
                 cp -f $CONFDIR/tex/mybeamer.sty /c/texlive/${VERSION}/texmf-dist/tex/lualatex/mybeamer/mybeamer.sty
         esac
         echo -n "~/bin/afxw*/ [Y/n]:"
