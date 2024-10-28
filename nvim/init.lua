@@ -21,7 +21,7 @@ require("lazy").setup({
     --autocomplete of (){}[]""''
     {"cohama/lexima.vim"},
     --highlight patch
-    {"sheerun/vim-polyglot"},
+    --{"sheerun/vim-polyglot"},
     --theme
     {"vim-airline/vim-airline"},
     {"vim-airline/vim-airline-themes"},
@@ -49,12 +49,6 @@ else
     print("~/.vimrc_common not found")
 end
 
---vim-airline
-vim.api.nvim_set_var("airline#extensions#tabline#enabled",1)
-vim.api.nvim_set_var("airline#extensions#tabline#formatter",'unique_tail')
-vim.api.nvim_set_var("airline_theme","behelit")
-vim.api.nvim_set_var("airline_powerline_fonts",1)
-
 --nvim terminal mode
 vim.keymap.set("t","<Esc>","<C-\\><C-n>")
 vim.keymap.set("t","jj","<C-\\><C-n>")
@@ -64,6 +58,19 @@ vim.api.nvim_create_autocmd({"TermOpen"},{
     command = "startinsert",
 })
 
+require('gitsigns').setup()
+--vim.api.nvim_set_hl()
+--vim.api.nvim_exec("hi SignColumn ctermfg=NONE ctermbg=NONE",false)
+--vim.api.nvim_exec("hi DiffAdd ctermfg=4 ctermbg=NONE",false)
+--vim.api.nvim_exec("hi DiffChange ctermfg=3 ctermbg=NONE",false)
+--vim.api.nvim_exec("hi DiffDelete ctermfg=5 ctermbg=NONE",false)
+--vim.api.nvim_exec("hi CocInlayHint ctermfg=7 ctermbg=242",false)
+
+--vim-airline
+vim.api.nvim_set_var("airline#extensions#tabline#enabled",1)
+vim.api.nvim_set_var("airline#extensions#tabline#formatter",'unique_tail')
+vim.api.nvim_set_var("airline_theme","behelit")
+vim.api.nvim_set_var("airline_powerline_fonts",1)
 
 --skk
 vim.api.nvim_exec("set imdisable",false)
@@ -71,13 +78,6 @@ vim.api.nvim_exec("set imdisable",false)
 vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
 vim.api.nvim_set_var("skk_auto_save_jisyo",1)
 
---以下必要かはわからない
---vim.api.nvim_set_hl()
-vim.api.nvim_exec("hi SignColumn ctermfg=NONE ctermbg=NONE",false)
-vim.api.nvim_exec("hi DiffAdd ctermfg=4 ctermbg=NONE",false)
-vim.api.nvim_exec("hi DiffChange ctermfg=3 ctermbg=NONE",false)
-vim.api.nvim_exec("hi DiffDelete ctermfg=5 ctermbg=NONE",false)
-vim.api.nvim_exec("hi CocInlayHint ctermfg=7 ctermbg=242",false)
 
 -- 以下built-in LSPの設定
 
