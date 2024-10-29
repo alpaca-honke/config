@@ -13,22 +13,48 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    --git diff
-    {"lewis6991/gitsigns.nvim"},
-    --autocomplete of (){}[]""''
-    {"cohama/lexima.vim"},
     --theme
     {"rebelot/kanagawa.nvim"},
 
+    --tabbar
     {
         "akinsho/bufferline.nvim",
         version = "*",
         dependencies = {"nvim-tree/nvim-web-devicons"}
     },
 
+    --status bar
     {
         "nvim-lualine/lualine.nvim",
         dependencies = {"nvim-tree/nvim-web-devicons"}
+    },
+
+    --filer
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = {"nvim-tree/nvim-web-devicons"},
+        lazy = true
+    },
+
+    --git diff
+    {"lewis6991/gitsigns.nvim"},
+    --scrollbar
+    {"petertriho/nvim-scrollbar"},
+    --autocomplete of (){}[]""''
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = true
+    },
+
+    --easy inserting of (){}[] etc
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require('nvim-surround').setup()
+        end
     },
 
     --IM
@@ -55,6 +81,9 @@ else
     print("~/.vimrc_common not found")
 end
 
+--colorterm
+vim.opt.termguicolors = true
+
 --nvim terminal mode
 vim.keymap.set("t","<Esc>","<C-\\><C-n>")
 vim.keymap.set("t","jj","<C-\\><C-n>")
@@ -63,8 +92,6 @@ vim.api.nvim_create_autocmd({"TermOpen"},{
     pattern = "*",
     command = "startinsert",
 })
-
-require('gitsigns').setup()
 
 vim.cmd("colorscheme kanagawa")
 
@@ -78,9 +105,17 @@ require("lualine").setup({
     }
 })
 
+--nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup()
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeOpen<CR>')
+
+require('gitsigns').setup()
+require('scrollbar').setup()
+
 --skk
 vim.api.nvim_exec("set imdisable",false)
-
 vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
 vim.api.nvim_set_var("skk_auto_save_jisyo",1)
 
