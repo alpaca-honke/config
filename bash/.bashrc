@@ -130,3 +130,5 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -s "$HOME/.deno/env" ] && \. "$HOME/.deno/env"
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
