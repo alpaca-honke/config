@@ -94,7 +94,19 @@ case $MACHINE in
                 ln -sf $CONFDIR/nvim/coc-settings.json ${XDG_CONFIG_HOME:-~/.config}/nvim/coc-settings.json
                 ;;
         esac
-	echo -n "~/.config/skkdic [Y/n]:"
+        echo -n "~/.config/wezterm/wezterm.lua"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo - ~/.config/wezterm/wezterm.lua
+                mkdir -p ${XDG_CONFIG_HOME:-~/.config}/wezterm
+                ln -sf $CONFDIR/wezterm/wezterm.lua ${XDG_CONFIG_HOME:-~/.config}/wezterm/wezterm.lua
+                ;;
+        esac
+        echo -n "~/.config/skkdic [Y/n]:"
         read ANS
         case $ANS in
             [Nn]* )
