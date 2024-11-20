@@ -80,21 +80,47 @@ case $MACHINE in
         esac
         echo -n "~/.config/nvim/init.lua, ~/.vimrc_common , ~/.config/nvim/coc-settings.json [Y/n]:"
         read ANS
+    case $ANS in
+        [Nn]* )
+            echo "no"
+            ;;
+        * )
+            echo - ~/.config/nvim/init.lua
+            mkdir -p ~/.config/nvim
+            ln -sf $CONFDIR/nvim/init.lua ${XDG_CONFIG_HOME:-~/.config}/nvim/init.lua
+            echo - ~/.vimrc_common
+            ln -sf $CONFDIR/common/.vimrc_common ~/.vimrc_common
+            echo - ~/.config/nvim/coc-settings.json
+            ln -sf $CONFDIR/nvim/coc-settings.json ${XDG_CONFIG_HOME:-~/.config}/nvim/coc-settings.json
+            ;;
+    esac
+    echo -n "~/.config/wezterm/wezterm.lua [Y/n]: "
+    read ANS
+    case $ANS in
+        [Nn]* )
+            echo "no"
+            ;;
+        * )
+            echo - ~/.config/wezterm/wezterm.lua
+            mkdir -p ${XDG_CONFIG_HOME:-~/.config}/wezterm
+            ln -sf $CONFDIR/wezterm/wezterm.lua ${XDG_CONFIG_HOME:-~/.config}/wezterm/wezterm.lua
+            ;;
+    esac
+    echo -n "HackGen NF Font [Y/n]: "
+    read ANS
         case $ANS in
             [Nn]* )
                 echo "no"
                 ;;
             * )
-                echo - ~/.config/nvim/init.lua
-                mkdir -p ~/.config/nvim
-                ln -sf $CONFDIR/nvim/init.lua ${XDG_CONFIG_HOME:-~/.config}/nvim/init.lua
-                echo - ~/.vimrc_common
-                ln -sf $CONFDIR/common/.vimrc_common ~/.vimrc_common
-                echo - ~/.config/nvim/coc-settings.json
-                ln -sf $CONFDIR/nvim/coc-settings.json ${XDG_CONFIG_HOME:-~/.config}/nvim/coc-settings.json
+                echo - ~/.local/share/fonts/HackGen_NF/HackGen_NF_vx.x.x
+                mkdir -p ~/.local/share/fonts/HackGen_NF/
+                wget https://github.com/yuru7/HackGen/releases/download/v2.9.0/HackGen_NF_v2.9.0.zip
+                unzip $CONFDIR/HackGen_NF_*.zip -d ~/.local/share/fonts/HackGen_NF/
+                rm HackGen_NF_*.zip && echo "deleted $(pwd)/HackGen_NF_+*.zip"
                 ;;
         esac
-	echo -n "~/.config/skkdic [Y/n]:"
+        echo -n "~/.config/skkdic [Y/n]:"
         read ANS
         case $ANS in
             [Nn]* )
