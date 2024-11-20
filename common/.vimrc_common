@@ -4,6 +4,8 @@ set fileencodings=iso-2022-jp,euc-jp,utf-8,sjis
 set fileformats=unix,dos,mac
 " line-number
 set nu
+" always cursorline as center
+set scrolloff=999
 " backup-off
 set nowritebackup
 set nobackup
