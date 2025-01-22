@@ -54,11 +54,11 @@ set smartindent
 " replace tab to space when inserting
 set expandtab
 " indent-width by vim-typing
-set shiftwidth=4
+set shiftwidth=2
 " cursor move width
-set softtabstop=4
+set softtabstop=2
 " display tab-width
-set tabstop=4
+set tabstop=2
 " indent visibility
 set list listchars=tab:\|\ ,space:･,trail:･,extends:»,precedes:«,eol:↲
 hi NonText    ctermfg=8
