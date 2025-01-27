@@ -89,7 +89,7 @@ nnoremap <leader>be :<C-u>e
 nnoremap <leader>bc :<C-u>bd<CR>
 " split
 nnoremap <leader>v :<C-u>vs
-nnoremap <leader>h :<C-u>hs
+nnoremap <leader>h :<C-u>sp
 nnoremap gw <C-w>
 
 " syntax highlight

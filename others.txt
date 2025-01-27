@@ -1,6 +1,5 @@
 --Linux machine requirements--
 zsh
-Node.js
 NeoVim
 (if not installed)git
 
@@ -8,6 +7,7 @@ NeoVim
 pwsh
 fish
 gh
+Node.js
 
 --Windows machine requirements--
 *AFXW
@@ -22,11 +22,11 @@ MacType (Mactype.Mactype)
 Everything (voidtools.Everything)
 Quick Share by Google (Google.QuickShare)
 PowerToys (Microsoft.PowerToys)
-*GlobalProtect
 *PrinterDrivers(Brother/Kyocera)
 Google Drive (Google.GoogleDrive)
 7-zip (7-zip.7-zip)
 Firefox (Mozilla.Firefox)
+Floorp (Abalaze.Floorp)
 Git (Git.Git)
 GitHub Desktop (GitHub.GitHubDesktop)
 *IOBit Uninstaller
@@ -43,3 +43,4 @@ gsudo (gerardog.gsudo)
 *NEWTRINO
 *Minecraft
 *Traction Waveform
+*GlobalProtect
