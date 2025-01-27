@@ -1,6 +1,6 @@
 " encoding
 set enc=utf8
-set fileencodings=iso-2022-jp,euc-jp,utf-8,sjis
+set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileformats=unix,dos,mac
 " line-number
 set nu
