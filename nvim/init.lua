@@ -70,8 +70,8 @@ require("lazy").setup({
     {"vim-skk/skk.vim"},
     --LSP
     {"neovim/nvim-lspconfig"},
-    {"williamboman/mason.nvim"},
-    {"williamboman/mason-lspconfig.nvim"},
+    {"williamboman/mason.nvim", version = "^1.0.0"},
+    {"williamboman/mason-lspconfig.nvim", version = "^1.0.0"},
     --completion
     {"hrsh7th/nvim-cmp"},
     {"hrsh7th/cmp-nvim-lsp"},
