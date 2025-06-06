@@ -156,7 +156,7 @@ require('gitsigns').setup()
 require('scrollbar').setup()
 
 --skk
-vim.api.nvim_exec("set imdisable",false)
+--vim.api.nvim_exec("set imdisable",false)
 vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
 vim.api.nvim_set_var("skk_auto_save_jisyo",1)
 
