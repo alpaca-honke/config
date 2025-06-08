@@ -8,6 +8,15 @@ pwsh
 fish
 gh
 Node.js
+wezterm
+onedrive
+ctrl-caps swap
+fcitx-skk
+floorp
+thunderbird
+ulauncher
+texlive
+code
 
 --Windows machine requirements--
 *AFXW
