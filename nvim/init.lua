@@ -1,4 +1,3 @@
---lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -14,7 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- discord
-    {"andweeb/presence.nvim"},
+    --{
+    --  "andweeb/presence.nvim",
+    --  lazy = false,
+    --},
+
     --theme
     {"rebelot/kanagawa.nvim"},
 
@@ -70,8 +73,15 @@ require("lazy").setup({
     {"vim-skk/skk.vim"},
     --LSP
     {"neovim/nvim-lspconfig"},
-    {"williamboman/mason.nvim"},
-    {"williamboman/mason-lspconfig.nvim"},
+    {"mason-org/mason.nvim"},
+    {"mason-org/mason-lspconfig.nvim"},
+    --LaTeX
+    {
+      "lervag/vimtex",
+      lazy = false,
+      --init = function()
+      --end
+    },
     --completion
     {"hrsh7th/nvim-cmp"},
     {"hrsh7th/cmp-nvim-lsp"},
@@ -164,19 +174,28 @@ vim.api.nvim_set_var("skk_auto_save_jisyo",1)
 -- 以下built-in LSPの設定
 
 -- 1. LSP Sever management
-require('mason').setup()
-require('mason-lspconfig').setup_handlers({ function(server)
-  local opt = {
-    -- -- Function executed when the LSP server startup
-    -- on_attach = function(client, bufnr)
-    --   local opts = { noremap=true, silent=true }
-    --   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    --   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
-    -- end,
-    capabilities = require('cmp_nvim_lsp').default_capabilities()
-  }
-  require('lspconfig')[server].setup(opt)
-end })
+-- Configure a server via `vim.lsp.config()` or `{after/}lsp/lua_ls.lua`
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {
+          'vim',
+          'require',
+        },
+      },
+    },
+  },
+})
+
+require("mason").setup()
+-- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
+require("mason-lspconfig").setup {
+  ensure_installed = { "lua_ls" }
+}
 
 -- 2. build-in LSP function
 -- keyboard shortcut

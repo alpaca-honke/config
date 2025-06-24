@@ -78,7 +78,7 @@ case $MACHINE in
                 ln -sf $CONFDIR/common/.vimrc_common ~/.vimrc_common
                 ;;
         esac
-        echo -n "~/.config/nvim/init.lua, ~/.vimrc_common , ~/.config/nvim/coc-settings.json [Y/n]:"
+        echo -n "~/.config/nvim/init.lua, ~/.vimrc_common [Y/n]:"
         read ANS
     case $ANS in
         [Nn]* )
@@ -90,8 +90,6 @@ case $MACHINE in
             ln -sf $CONFDIR/nvim/init.lua ${XDG_CONFIG_HOME:-~/.config}/nvim/init.lua
             echo - ~/.vimrc_common
             ln -sf $CONFDIR/common/.vimrc_common ~/.vimrc_common
-            echo - ~/.config/nvim/coc-settings.json
-            ln -sf $CONFDIR/nvim/coc-settings.json ${XDG_CONFIG_HOME:-~/.config}/nvim/coc-settings.json
             ;;
     esac
     echo -n "~/.config/wezterm/wezterm.lua [Y/n]: "

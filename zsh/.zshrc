@@ -207,3 +207,4 @@ export PATH=$PATH:~/.local/bin/zed
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.deno/env ] && . ~/.deno/env
