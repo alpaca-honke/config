@@ -55,3 +55,7 @@ gsudo (gerardog.gsudo)
 *Minecraft
 *Traction Waveform
 *GlobalProtect
+
+--Others--
+Discord
+Spotify
