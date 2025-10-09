@@ -14,9 +14,11 @@ ctrl-caps swap
 fcitx-skk
 floorp
 thunderbird
-ulauncher
+ulauncher (with systemd settings)
 texlive
 code
+
+and caps-ctrl swap settings (ex. via gnome tweak)
 
 --Windows machine requirements--
 *AFXW
@@ -53,3 +55,7 @@ gsudo (gerardog.gsudo)
 *Minecraft
 *Traction Waveform
 *GlobalProtect
+
+--Others--
+Discord
+Spotify
