@@ -110,7 +110,7 @@ else
         },
 
         --IM
-        {"vim-skk/skk.vim"},
+--        {"vim-skk/skk.vim"},
         --LSP
         {"neovim/nvim-lspconfig"},
         {"mason-org/mason.nvim"},
