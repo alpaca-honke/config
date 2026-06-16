@@ -32,5 +32,6 @@ config.colors = {
 }
 
 config.font = wezterm.font("Hackgen Console NF", {weight="Regular", stretch="Normal", style="Normal"})
+config.use_ime = true
 
 return config
