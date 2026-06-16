@@ -122,6 +122,14 @@ else
           --init = function()
           --end
         },
+        {
+          "tzhouhc/virt-counter.nvim",
+          opts={
+            count_newlines = true,
+            preset = "pill",
+            count_bytes = false,
+          }
+        },
         --completion
         {"hrsh7th/nvim-cmp"},
         {"hrsh7th/cmp-nvim-lsp"},
@@ -231,10 +239,15 @@ else
       },
     })
 
+    vim.lsp.config('texlab', {})
+
     require("mason").setup()
     -- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
     require("mason-lspconfig").setup {
-      ensure_installed = { "lua_ls" }
+      ensure_installed = {
+        "lua_ls",
+        "texlab"
+      }
     }
 
     -- 2. build-in LSP function
