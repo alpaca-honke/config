@@ -48,6 +48,17 @@ case $ANS in
         cp -f ~/.vimrc_common $CONFDIR/common/.vimrc_common
         ;;
 esac
+echo -n "~/.gvimrc [Y/n]:"
+read ANS
+case $ANS in
+    [Nn]* )
+        echo "no"
+        ;;
+    * )
+        echo - ~/.gvimrc
+        cp -f ~/.gvimrc $CONFDIR/vim/.gvimrc
+        ;;
+esac
 echo -n "~/AppData/Local/nvim/init.lua, ~/.vimrc_common , ~/AppData/Local/nvim/coc-settings.json [Y/n]:"
 read ANS
 case $ANS in

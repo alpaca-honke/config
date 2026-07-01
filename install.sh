@@ -78,6 +78,17 @@ case $MACHINE in
                 ln -sf $CONFDIR/common/.vimrc_common ~/.vimrc_common
                 ;;
         esac
+        echo -n "~/.gvimrc [Y/n]:"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo - ~/.gvimrc
+                ln -sf $CONFDIR/vim/.gvimrc ~/.gvimrc
+                ;;
+        esac
         echo -n "~/.config/nvim/init.lua, ~/.vimrc_common [Y/n]:"
         read ANS
     case $ANS in
@@ -206,6 +217,17 @@ case $MACHINE in
             * )
                 echo - ~/.config/powershell/Microsoft.PowerShell_profile.ps1
                 cp -f $CONFDIR/pwsh/Microsoft.PowerShell_profile.ps1 ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+                ;;
+        esac
+        echo -n "~/.gvimrc [Y/n]:"
+        read ANS
+        case $ANS in
+            [Nn]* )
+                echo "no"
+                ;;
+            * )
+                echo - ~/.gvimrc
+                cp -f $CONFDIR/vim/.gvimrc ~/.gvimrc
                 ;;
         esac
         echo -n "~/.vimrc , ~/.vimrc_common , ~/.vim/tmp [Y/n]:"
