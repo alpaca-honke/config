@@ -4,8 +4,8 @@ set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileformats=unix,dos,mac
 " line-number
 set nu
-" always cursorline as center
-set scrolloff=999
+" cursor moving limit of window top and bottom
+set scrolloff=10
 " backup-off
 set nowritebackup
 set nobackup
@@ -110,4 +110,4 @@ augroup END
 
 
 " [WINDOWS]use slash instead of backslash
-"set shellslash
+set shellslash

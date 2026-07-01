@@ -200,7 +200,15 @@ else
     --nvim-tree
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
-    require("nvim-tree").setup()
+    require("nvim-tree").setup({
+      filesystem_watchers = {
+        enable = true,
+        ignore_dirs = {
+          ".git",
+          "node_modules",
+        },
+      },
+    })
     vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeOpen<CR>')
 
     --fzf
@@ -221,9 +229,24 @@ else
 
     -- 以下built-in LSPの設定
 
-    -- 1. LSP Sever management
-    -- Configure a server via `vim.lsp.config()` or `{after/}lsp/lua_ls.lua`
-    vim.lsp.config('lua_ls', {
+    -- 1. LSP Sever management and completion settings
+    local cmp = require("cmp")
+    local cmp_lsp = require("cmp_nvim_lsp")
+    local capabilities = cmp_lsp.default_capabilities()
+
+    require("mason").setup()
+    -- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
+    require("mason-lspconfig").setup {
+      ensure_installed = {
+        "lua_ls",
+        "texlab"
+      }
+    }
+
+    local lspconfig = require("lspconfig")
+
+    lspconfig.lua_ls.setup({
+      capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
@@ -235,54 +258,89 @@ else
               'require',
             },
           },
+          workspace = {
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false,
+          },
         },
       },
     })
 
-    vim.lsp.config('texlab', {})
+    lspconfig.texlab.setup({
+      capabilities = capabilities,
+    })
 
-    require("mason").setup()
-    -- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
-    require("mason-lspconfig").setup {
-      ensure_installed = {
-        "lua_ls",
-        "texlab"
-      }
+    -- 2. built-in LSP function
+    -- keyboard shortcut
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("my_lsp_attach", {clear = true}),
+      callback = function(ev)
+        local opts = {buffer = ev.buf, silent = true}
+
+        vim.keymap.set('n', 'K',  vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gf', vim.lsp.buf.format, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', 'gn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'ge', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
+
+        vim.bo[ev.buf].formatexpr = "v:lua.vim.lsp.formatexpr()"
+
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if client and client.server_capabilities.documentHighlightProvider then
+            local highlight_augroup = vim.api.nvim_create_augroup("my_lsp_highlight", { clear = false })
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+              buffer = ev.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.document_highlight,
+            })
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+              buffer = ev.buf,
+              group = highlight_augroup,
+              callback = vim.lsp.buf.clear_references,
+            })
+            
+            -- バッファを閉じた時にハイライトグループをクリーンアップ
+            vim.api.nvim_create_autocmd("LspDetach", {
+              buffer = ev.buf,
+              callback = function()
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds({ group = "my_lsp_highlight", buffer = ev.buf })
+              end,
+            })
+          end
+      end
+    })
+    -- LSP handlers
+    vim.diagnostic.config({
+      virtual_text = false
+    })
+
+    -- Reference highlight
+    vim.opt.updatetime = 500
+
+    local hl_opts = {
+      underline = true,
+      ctermfg = 1,
+      ctermbg = 8,
+      fg = "#A00000",
+      bg = "#104040"
     }
 
-    -- 2. build-in LSP function
-    -- keyboard shortcut
-    vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
-    vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>')
-    vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-    vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    -- LSP handlers
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-    )
-    -- Reference highlight
-    vim.cmd [[
-    set updatetime=500
-    highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
-    highlight LspReferenceRead  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
-    highlight LspReferenceWrite cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040
-    augroup lsp_document_highlight
-      autocmd!
-      autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-    augroup END
-    ]]
+    vim.api.nvim_set_hl(0, "LspReferenceText", hl_opts)
+    vim.api.nvim_set_hl(0, "LspReferenceRead", hl_opts)
+    vim.api.nvim_set_hl(0, "LspReferenceWrite", hl_opts)
 
     -- 3. completion (hrsh7th/nvim-cmp)
-    local cmp = require("cmp")
+
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -291,8 +349,10 @@ else
       },
       sources = {
         { name = "nvim_lsp" },
-        -- { name = "buffer" },
-        -- { name = "path" },
+        { name = "vsnip" },
+      }, {
+        { name = "buffer" },
+        { name = "path" },
       },
       mapping = cmp.mapping.preset.insert({
         ["<C-p>"] = cmp.mapping.select_prev_item(),
