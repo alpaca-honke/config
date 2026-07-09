@@ -115,13 +115,7 @@ else
         {"neovim/nvim-lspconfig"},
         {"mason-org/mason.nvim"},
         {"mason-org/mason-lspconfig.nvim"},
-        --LaTeX
-        {
-          "lervag/vimtex",
-          lazy = false,
-          --init = function()
-          --end
-        },
+        --virtual mode counter
         {
           "tzhouhc/virt-counter.nvim",
           opts={
@@ -133,7 +127,115 @@ else
         --completion
         {"hrsh7th/nvim-cmp"},
         {"hrsh7th/cmp-nvim-lsp"},
-        {"hrsh7th/vim-vsnip"}
+        {"hrsh7th/vim-vsnip"},
+        --ai companion
+        {
+          "yetone/avante.nvim",
+          -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+          -- ⚠️ must add this setting! ! !
+          build = vim.fn.has("win32") ~= 0
+              and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+              or "make",
+          event = "VeryLazy",
+          version = false, -- Never set this value to "*"! Never!
+          ---@module 'avante'
+          ---@type avante.Config
+          opts = {
+            -- add any opts here
+            -- this file can contain specific instructions for your project
+            --instructions_file = "avante.md",
+            provider = "copilot",
+            auto_suggestions_provider = "copilot",
+            -- providers = {
+            --   claude = {
+            --     endpoint = "https://api.anthropic.com",
+            --     model = "claude-sonnet-4-20250514",
+            --     timeout = 30000, -- Timeout in milliseconds
+            --       extra_request_body = {
+            --         temperature = 0.75,
+            --         max_tokens = 20480,
+            --       },
+            --   },
+            --   copilot = {
+            --     endpoint = "api.githubcopilot.com",
+            --     model = "gpt-4o",
+            --     timeout = 30000, -- Timeout in milliseconds
+            --     extra_request_body = {
+            --       temperature = 0.75,
+            --       max_tokens = 32768,
+            --     },
+            --   },
+            -- },
+          },
+          dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            --- The below dependencies are optional,
+            "nvim-mini/mini.pick", -- for file_selector provider mini.pick
+            "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+            "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+            "ibhagwan/fzf-lua", -- for file_selector provider fzf
+            "stevearc/dressing.nvim", -- for input provider dressing
+            "folke/snacks.nvim", -- for input provider snacks
+            "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+            "zbirenbaum/copilot.lua", -- for providers='copilot'
+            --{ "github/copilot.vim", lazy = false },
+            { "zbirenbaum/copilot.lua",
+                event = "VeryLazy",
+                cmd = "Copilot",
+                config= function()
+                  require("copilot").setup({
+                    suggestion = {
+                      enabled = true,
+                      auto_trigger = true,
+                      keymap = {
+                        accept = "<C-l>",
+                        accept_word = "<C-w>",
+                        accept_line = "<C-e>",
+                        next = "<C-[>",
+                        prev = "<C-]>",
+                        dismiss = "<C-/>",
+                      }
+                    },
+                    panel = { enabled = false },
+                  })
+                end,
+            },
+            {
+              -- support for image pasting
+              "HakonHarnes/img-clip.nvim",
+              event = "VeryLazy",
+              opts = {
+                -- recommended settings
+                default = {
+                  embed_image_as_base64 = false,
+                  prompt_for_file_name = false,
+                  drag_and_drop = {
+                    insert_mode = true,
+                  },
+                  -- required for Windows users
+                  use_absolute_path = true,
+                },
+              },
+            },
+            {
+              -- Make sure to set this up properly if you have lazy=true
+              'MeanderingProgrammer/render-markdown.nvim',
+              opts = {
+                file_types = { "markdown", "Avante" },
+              },
+              ft = { "markdown", "Avante" },
+            },
+          },
+        },
+        --render markdown for ai outputs
+        {
+          'MeanderingProgrammer/render-markdown.nvim',
+          opts = {
+            file_types = { "markdown", "Avante" },
+          },
+          ft = { "markdown", "Avante" },
+        },
     })
 
     --load common vimrc with vim
@@ -226,7 +328,6 @@ else
     vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
     vim.api.nvim_set_var("skk_auto_save_jisyo",1)
 
-
     -- 以下built-in LSPの設定
 
     -- 1. LSP Sever management and completion settings
@@ -236,16 +337,12 @@ else
 
     require("mason").setup()
     -- Note: `nvim-lspconfig` needs to be in 'runtimepath' by the time you set up mason-lspconfig.nvim
+    local lspservers = {"lua_ls", "texlab", "ltex", "asm_lsp"}
     require("mason-lspconfig").setup {
-      ensure_installed = {
-        "lua_ls",
-        "texlab"
-      }
+      ensure_installed = lspservers
     }
 
-    local lspconfig = require("lspconfig")
-
-    lspconfig.lua_ls.setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -268,9 +365,26 @@ else
       },
     })
 
-    lspconfig.texlab.setup({
+    vim.lsp.config("texlab", {
       capabilities = capabilities,
     })
+
+    vim.lsp.config("ltex", {
+      capabilities = capabilities,
+      settings = {
+        ltex = {
+          language = "ja-JP",
+          enabled = {"latex", "html", "markdown", "text"},
+        },
+      },
+    })
+
+    vim.lsp.config("asm_lsp", {
+      capabilities = capabilities,
+      filetypes = {"asm", "s", "S"}
+    })
+
+    vim.lsp.enable(lspservers)
 
     -- 2. built-in LSP function
     -- keyboard shortcut
@@ -359,7 +473,7 @@ else
         ["<C-n>"] = cmp.mapping.select_next_item(),
         ['<C-l>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm { select = true },
+        ["<CR>"] = cmp.mapping.confirm { select = false },
       }),
       experimental = {
         ghost_text = true,
