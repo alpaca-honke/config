@@ -141,31 +141,20 @@ else
           ---@module 'avante'
           ---@type avante.Config
           opts = {
-            -- add any opts here
             -- this file can contain specific instructions for your project
             --instructions_file = "avante.md",
             provider = "gemini",
-            auto_suggestions_provider = "gemini",
-            -- providers = {
-            --   claude = {
-            --     endpoint = "https://api.anthropic.com",
-            --     model = "claude-sonnet-4-20250514",
-            --     timeout = 30000, -- Timeout in milliseconds
-            --       extra_request_body = {
-            --         temperature = 0.75,
-            --         max_tokens = 20480,
-            --       },
-            --   },
-            --   copilot = {
-            --     endpoint = "api.githubcopilot.com",
-            --     model = "gpt-4o",
-            --     timeout = 30000, -- Timeout in milliseconds
-            --     extra_request_body = {
-            --       temperature = 0.75,
-            --       max_tokens = 32768,
-            --     },
-            --   },
-            -- },
+            providers = {
+              gemini = {
+                endpoint = "https://generativelanguage.googleapis.com/v1beta",
+                model = "gemini-3.1-flash-lite",
+                api_key_name = "GEMINI_API_KEY",
+              },
+            },
+            behaviour = {
+              auto_suggestions_provider = "gemini",
+            },
+            hints = { enabled = false },
           },
           dependencies = {
             "nvim-lua/plenary.nvim",
@@ -175,7 +164,7 @@ else
             "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
             "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
             "ibhagwan/fzf-lua", -- for file_selector provider fzf
-            "stevearc/dressing.nvim", -- for input provider dressing
+            --"stevearc/dressing.nvim", -- for input provider dressing
             "folke/snacks.nvim", -- for input provider snacks
             "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 
@@ -229,13 +218,14 @@ else
           },
         },
         --render markdown for ai outputs
-        {
-          'MeanderingProgrammer/render-markdown.nvim',
-          opts = {
-            file_types = { "markdown", "Avante" },
-          },
-          ft = { "markdown", "Avante" },
-        },
+        --互換性あんまよくなくてエラーうるさいからやめます
+        --{
+        --  'MeanderingProgrammer/render-markdown.nvim',
+        --  opts = {
+        --    file_types = { "markdown", "Avante" },
+        --  },
+        --  ft = { "markdown", "Avante" },
+        --},
     })
 
     --load common vimrc with vim
@@ -248,11 +238,6 @@ else
       vim.api.nvim_exec("source ~/.vimrc_common",false)
     else
         print("~/.vimrc_common not found")
-    end
-
-    local local_init = vim.fn.expand("~/.init.local.lua")
-    if vim.fn.filereadable(local_init) == 1 then
-      dofile(local_init)
     end
 
     -- The setup config table shows all available config options with their default values:
