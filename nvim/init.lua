@@ -178,28 +178,26 @@ else
             "stevearc/dressing.nvim", -- for input provider dressing
             "folke/snacks.nvim", -- for input provider snacks
             "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-            "zbirenbaum/copilot.lua", -- for providers='copilot'
-            --{ "github/copilot.vim", lazy = false },
             { "zbirenbaum/copilot.lua",
-                event = "VeryLazy",
-                cmd = "Copilot",
-                config= function()
-                  require("copilot").setup({
-                    suggestion = {
-                      enabled = true,
-                      auto_trigger = true,
-                      keymap = {
-                        accept = "<C-l>",
-                        accept_word = "<C-w>",
-                        accept_line = "<C-e>",
-                        next = "<C-[>",
-                        prev = "<C-]>",
-                        dismiss = "<C-/>",
-                      }
-                    },
-                    panel = { enabled = false },
-                  })
-                end,
+                lazy = false,
+                --cmd = "Copilot",
+                --config= function()
+                --  require("copilot").setup({
+                --    suggestion = {
+                --      enabled = true,
+                --      auto_trigger = true,
+                --      keymap = {
+                --        accept = "<C-l>",
+                --        accept_word = "<C-w>",
+                --        accept_line = "<C-e>",
+                --        next = "<C-[>",
+                --        prev = "<C-]>",
+                --        dismiss = "<C-/>",
+                --      }
+                --    },
+                --    panel = { enabled = false },
+                --  })
+                --end,
             },
             {
               -- support for image pasting
