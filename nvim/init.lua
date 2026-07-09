@@ -144,8 +144,8 @@ else
             -- add any opts here
             -- this file can contain specific instructions for your project
             --instructions_file = "avante.md",
-            provider = "copilot",
-            auto_suggestions_provider = "copilot",
+            provider = "gemini",
+            auto_suggestions_provider = "gemini",
             -- providers = {
             --   claude = {
             --     endpoint = "https://api.anthropic.com",
@@ -178,27 +178,29 @@ else
             "stevearc/dressing.nvim", -- for input provider dressing
             "folke/snacks.nvim", -- for input provider snacks
             "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-            { "zbirenbaum/copilot.lua",
-                lazy = false,
-                --cmd = "Copilot",
-                --config= function()
-                --  require("copilot").setup({
-                --    suggestion = {
-                --      enabled = true,
-                --      auto_trigger = true,
-                --      keymap = {
-                --        accept = "<C-l>",
-                --        accept_word = "<C-w>",
-                --        accept_line = "<C-e>",
-                --        next = "<C-[>",
-                --        prev = "<C-]>",
-                --        dismiss = "<C-/>",
-                --      }
-                --    },
-                --    panel = { enabled = false },
-                --  })
-                --end,
-            },
+
+            -- Copilotあきらめた
+            --{ "zbirenbaum/copilot.lua",
+            --    lazy = false,
+            --    cmd = "Copilot",
+            --    config= function()
+            --      require("copilot").setup({
+            --        suggestion = {
+            --          enabled = true,
+            --          auto_trigger = true,
+            --          keymap = {
+            --            accept = "<C-l>",
+            --            accept_word = "<C-w>",
+            --            accept_line = "<C-e>",
+            --            next = "<C-[>",
+            --            prev = "<C-]>",
+            --            dismiss = "<C-/>",
+            --          }
+            --        },
+            --        panel = { enabled = false },
+            --      })
+            --    end,
+            --},
             {
               -- support for image pasting
               "HakonHarnes/img-clip.nvim",
@@ -246,6 +248,11 @@ else
       vim.api.nvim_exec("source ~/.vimrc_common",false)
     else
         print("~/.vimrc_common not found")
+    end
+
+    local local_init = vim.fn.expand("~/.init.local.lua")
+    if vim.fn.filereadable(local_init) == 1 then
+      dofile(local_init)
     end
 
     -- The setup config table shows all available config options with their default values:
@@ -325,6 +332,7 @@ else
     --vim.api.nvim_exec("set imdisable",false)
     vim.api.nvim_set_var("skk_large_jisyo","~/.config/skkdic/SKK-JISYO.L")
     vim.api.nvim_set_var("skk_auto_save_jisyo",1)
+
 
     -- 以下built-in LSPの設定
 
